@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 
 export class AgregarCitas extends Component {
+    crearNuevaCita=(e)=>{
+        e.preventDefault();
+        // console.log('Enviado el Formulario');
+        this.props.crearCita();
+    }
     render() {
         return (
             <div className="card mt-5">
                 <div className="card-body">
                     <h2 className="text-center card-title mb-5">Agregar las Cita aquí</h2>
-                    <form >
+                    <form  onSubmit={this.crearNuevaCita}>
                         <div className="form-group row">
                             <label className="col-sm-4 col-lg-2 col-form-label">Nombre Mascota</label>
                             <div className="col-sm-8 col-lg-10">
