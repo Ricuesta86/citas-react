@@ -5,7 +5,7 @@ import AgregarCitas from './componentes/AgregarCitas';
 class App extends Component {
   // Funcion de para crear una cita
   crearCita=()=>{
-    console.log('Desde app.js');    
+    // console.log('Desde app.js');    
   }
 
 
