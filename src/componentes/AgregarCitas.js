@@ -3,6 +3,11 @@ import uuid from 'uuid'
 
 export class AgregarCitas extends Component {
 
+
+    state={
+        error:false
+    }
+
     nombreMascotaRef=React.createRef();
     nombreDuennoRef=React.createRef();
     fechaRef=React.createRef();
@@ -20,31 +25,45 @@ export class AgregarCitas extends Component {
             hora=this.horaRef.current.value,
             sintomas=this.sintomaRef.current.value;
 
-        // Object Literal 
-        const nuevaCita={
-            id:uuid(),
-            nombreMascota,
-            propietario,
-            fecha,
-            hora,
-            sintomas
-        }
+            if(nombreMascota === '' || propietario === '' || fecha === '' || hora === '' || sintomas === ''){
+                // console.log('Faltan datos');
+                this.setState({
+                    error:true
+                })
 
-        // console.log(this.nombreMascotaRef.current.value);
-        // console.log(this.nombreDuennoRef.current.value);
-        // console.log(this.fechaRef.current.value);
-        // console.log(this.horaRef.current.value);
-        // console.log(this.sintomaRef.current.value);
-        
-        // Se envio el objeto hacia el padre para actualizar el state
-        this.props.crearCita(nuevaCita);
+            }else{
 
-        // Resetea el formulario
-        e.currentTarget.reset()
-        
-        
+                 // Object Literal 
+                const nuevaCita={
+                    id:uuid(),
+                    nombreMascota,
+                    propietario,
+                    fecha,
+                    hora,
+                    sintomas
+                }
+
+                // console.log(this.nombreMascotaRef.current.value);
+                // console.log(this.nombreDuennoRef.current.value);
+                // console.log(this.fechaRef.current.value);
+                // console.log(this.horaRef.current.value);
+                // console.log(this.sintomaRef.current.value);
+                
+                // Se envio el objeto hacia el padre para actualizar el state
+                this.props.crearCita(nuevaCita);
+
+                // Resetea el formulario
+                e.currentTarget.reset()      
+                
+                this.setState({
+                    error:false
+                })
+            }
+
+       
     }
     render() {
+        const errorCampos=this.state.error;
         return (
             <div className="card mt-5">
                 <div className="card-body">
@@ -87,6 +106,7 @@ export class AgregarCitas extends Component {
                             </div>
                         </div>
                     </form>
+                    { errorCampos ? <div className="alert alert-danger">Todos los campos son obligatorio</div>:''}
                 </div>
             </div>
         )
