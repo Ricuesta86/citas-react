@@ -36,7 +36,13 @@ export class AgregarCitas extends Component {
         // console.log(this.horaRef.current.value);
         // console.log(this.sintomaRef.current.value);
         
+        // Se envio el objeto hacia el padre para actualizar el state
         this.props.crearCita(nuevaCita);
+
+        // Resetea el formulario
+        e.currentTarget.reset()
+        
+        
     }
     render() {
         return (
