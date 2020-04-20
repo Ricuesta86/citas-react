@@ -45,6 +45,21 @@ class App extends Component {
     
   }
 
+  componentDidMount(){
+    // console.log('listo');
+    const citasLS = localStorage.getItem('citas');
+    if(citasLS){
+      this.setState({
+        citas:JSON.parse(citasLS)
+      })
+    }    
+  }
+
+  componentDidUpdate(){
+    // console.log('Cuando hay un cambio');
+    localStorage.setItem('citas',JSON.stringify(this.state.citas));
+  }
+
 
   render(){
       return (
