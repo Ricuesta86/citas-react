@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 
 export class Cita extends Component {
     eliminarCita=()=>{
@@ -16,11 +18,24 @@ export class Cita extends Component {
                     <p className="card-text"><span>Hora:</span>{hora}</p>
                     <p className="card-text"><span>Sintomas:</span></p>
                     <p className="card-text">{sintomas}</p>
-                    <button className="alert alert-danger" onClick={this.eliminarCita}>Borrar </button>
+                    <button className="alert alert-danger" onClick={this.eliminarCita}>Borrar &times;</button>
                 </div>
             </div>
         )
     }
+}
+
+Cita.propTypes = {
+    info: PropTypes.shape({
+        nombreMascota: PropTypes.string.isRequired,
+        propietario: PropTypes.string.isRequired,
+        fecha: PropTypes.string.isRequired,
+        hora: PropTypes.string.isRequired,
+        sintomas: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
+    }),
+    borrarCita: PropTypes.func.isRequired
+
 }
 
 export default Cita
