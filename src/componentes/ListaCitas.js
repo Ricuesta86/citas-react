@@ -15,7 +15,12 @@ export class ListaCitas extends Component {
                     <h2 className="card-title text-center">{mensaje}</h2>
 
                     <div className="lista-citas">
-                        <Cita />
+                        {Object.keys(this.props.citas).map(cita=>(
+                            <Cita 
+                                key={cita}
+                                info={this.props.citas[cita]}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
